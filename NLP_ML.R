@@ -78,11 +78,7 @@ runxg<-function(round=100){
 
 #random forest
 runrf<-function(round=100){
-  #for(i in 1:366){
   idx<-createDataPartition(dtm_logreturn2$class,p=0.7)
-
-  #train<-dtm_logreturn2[i:(i+224),]
-  #test<-dtm_logreturn2[(i+225),]
 
   train<-dtm_logreturn2[idx$Resample1,]
   test<-dtm_logreturn2[-idx$Resample1,]
@@ -97,6 +93,4 @@ runrf<-function(round=100){
   pred<-predict(m, newdata = test)
 
   t<-table(pred,test[,ncol(test)])
-
-#  acc<-round(mean(pred == test[,ncol(test)])*100,2)
 }
